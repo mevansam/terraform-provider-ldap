@@ -1,0 +1,38 @@
+dist: trusty
+sudo: required
+language: go
+go:
+- 1.8.x
+go_import_path: github.com/terraform-providers/terraform-provider-ldap
+before_install:
+- openssl aes-256-cbc -K $encrypted_037674143fdc_key -iv $encrypted_037674143fdc_iv
+  -in .test_env/pcfdev.pem.enc -out .test_env/pcfdev.pem -d
+- chmod 0600 .test_env/pcfdev.pem
+install:
+- sudo apt-get install jq
+- pip install --upgrade --user awscli
+- wget https://releases.hashicorp.com/vagrant/1.9.7/vagrant_1.9.7_x86_64.deb
+- sudo dpkg -i vagrant_1.9.7_x86_64.deb
+- rm -f vagrant_1.9.7_x86_64.deb
+- vagrant plugin install vagrant-aws
+- bash scripts/gogetcookie.sh
+- go get github.com/kardianos/govendor
+script:
+- travis_wait 120 scripts/build.sh
+deploy:
+  provider: releases
+  api_key:
+    secure: UqAsAMQSWA/Ao8LS1pr7o6fJkz8Njhj5oFLqlgP6t+eomZi7WzQOjRJmq0QdN48/lImGOF6GfFfPAL01n9ypbVpzGbFy+e3iePY9j2CObPyV1baCGwEtStuUdiQZE+JST3hGTMBA+tDBzBGPQiNOj2FGYh3FhxrEnCPhZBY6Q/1ZBM2A2hF4XsKJpPqvf6dyOExavDc3twmuoaku29LlFBSCfVlFNnEvQ3A/SGdN9Egyex+O9ZbUaH7FZUh+Buj7S3EMFgDCb6YsKnqAEYK/3CvQ41TC+ZlmOh4d/fpNJG3kL2/xnpykGfCQzYtfX2JOKvPfjMGEIT+wKDPyoyECLXa6TseICfw7qC4696TeVf4+3hvWasmIQd1wcqXcT56XQ+bdRvP6A886X9OZlDcyRFoTdh9cVlr9paOeqgGRThZ9zb7LZpKZ85GhDvgotnmJxQfFFCGPmpgtnSChNsmfhmdsmRHZ2WuTJhbuEFMwtIp7Qsqo6Q1cDyVaFpDrAcrJFuSIv3XzZMkXP+BpqvH27kxySBC8lC/WnIRrKV/zz+G29CbrTpnH9G8Fp6dBMZXBFk4o2PKUYRu4bGcBoAdrlLma9MzB4W7T1uB/SGfWaKCFGygT8UvPpqbr+BxZ7mYKLS5XbnUNyMsN9URi1/BCgFDZc1dt968cneSXKcQbHrE=
+  file:
+  - bin/terraform-provider-ldap_windows_amd64.exe
+  - bin/terraform-provider-ldap_linux_amd64
+  - bin/terraform-provider-ldap_darwin_amd64
+  skip_cleanup: true
+  on:
+    tags: true
+    all_branches: true
+    repo: mevansam/terraform-provider-ldap
+env:
+  global:
+  - AWS_DEFAULT_REGION=us-east-1
+  

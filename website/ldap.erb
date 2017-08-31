@@ -1,0 +1,38 @@
+<% wrap_layout :inner do %>
+	<% content_for :sidebar do %>
+
+	<div class="docs-sidebar hidden-print affix-top" role="complementary">
+		<ul class="nav docs-sidenav">
+
+			<li<%= sidebar_current("docs-home") %>>
+				<a href="/docs/providers/index.html">All Providers</a>
+			</li>
+
+			<li<%= sidebar_current("docs-ldap-index") %>>
+			<a href="/docs/providers/ldap/index.html">LDAP Provider</a>
+			</li>
+
+			<li<%= sidebar_current("docs-ldap-datasource") %>>
+				<a href="#">Data Sources</a>
+				<ul class="nav nav-visible">
+					<li<%= sidebar_current("docs-ldap-datasource-query") %>>
+					<a href="/docs/providers/cf/d/query.html">ldap_query</a>
+					</li>
+				</ul>
+			</li>
+
+			<!--
+			<li<%= sidebar_current("docs-ldap-resource") %>>
+				<a href="#">Resources</a>
+				<ul class="nav nav-visible">
+				</ul>
+			</li>
+			-->
+
+		</ul>
+	</div>
+
+<% end %>
+
+<%= yield %>
+<% end %>
