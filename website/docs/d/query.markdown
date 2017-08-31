@@ -1,5 +1,5 @@
 ---
-layout: "uaa"
+layout: "ldap"
 page_title: "LDAP: ldap_query"
 sidebar_current: "docs-ldap-datasource-query"
 description: |-
