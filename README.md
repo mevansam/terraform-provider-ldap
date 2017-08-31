@@ -1,4 +1,4 @@
-Cloud Foundry UAA Terraform Provider [![Build Status](https://travis-ci.org/mevansam/terraform-provider-ldap.svg?branch=master)](https://travis-ci.org/mevansam/terraform-provider-ldap)
+LDAP Terraform Provider [![Build Status](https://travis-ci.org/mevansam/terraform-provider-ldap.svg?branch=master)](https://travis-ci.org/mevansam/terraform-provider-ldap)
 ================================
 
 Overview
