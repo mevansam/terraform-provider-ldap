@@ -55,7 +55,7 @@ $ $GOPATH/bin/terraform-provider-ldap
 Testing the Provider
 --------------------
 
-In order to run the tests locally an LDAP server needs to be run locally. You can launch this server in Docker with the test directory data using the provided script "`scripts/ldap-up.sh`". Once the LDAP server is running locally it can be accessed via the [phpLDAPadmin](http://phpldapadmin.sourceforge.net/wiki/index.php/Main_Page) application launched alongside the LDAP server via this [link](https://localhost:6443/). Once the instance is running you will need to export the following environment variables.
+In order to run the tests an LDAP server needs to be run locally using the test directory database. You can launch this server in Docker using the provided script "`scripts/ldap-up.sh`". Once the LDAP server is running it can be accessed via the [phpLDAPadmin](http://phpldapadmin.sourceforge.net/wiki/index.php/Main_Page) application launched alongside the LDAP server via this [link](https://localhost:6443/). Once the instance is running you will need to export the following environment variables.
 
 ```
 export LDAP_HOST=<local host IP>
