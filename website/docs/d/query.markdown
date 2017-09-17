@@ -20,13 +20,10 @@ data "ldap_query" "org1" {
   base_dn = "dc=acme,dc=com"
   filter = "(&(objectClass=inetOrgPerson)(memberOf=cn=developers,ou=org1,ou=pcf,dc=example,dc=org))(mail=callison@example.org))"
 
-  attributes = {
-    username: "mail"
-    given_name: "givenName" 
-    family_name: "sn" 
+  attributes = [ "mail", "givenName", "sn" ]
   }
 
-  key_attribute = "username"
+  index_attribute = "mail"
 }
 ```
 
@@ -46,8 +43,8 @@ ldapsearch -x -H ldap://myldapserver:389 \
 
 The following arguments declare how the results should be exported so they can be referenced via interpolation.
 
-* `attributes` - (Required, List) The list of the LDAP attributes to be returned. 
-* `index_attribute` - (Required, String) The attribute used index the returned results' attributes.
+* `attributes` - (Required, List) The list of the LDAP attributes to be retrieved. 
+* `index_attribute` - (Required, String) The LDAP attribute to use to populate the `results` attribute with. The value of this attribute can be used as the key to lookup a LDAP query result record and its attributes.
 
 ## Attributes Reference
 
