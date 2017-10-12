@@ -50,5 +50,5 @@ The following arguments declare how the results should be exported so they can b
 
 The following attributes are exported:
 
-* `results` - A list of the values of the `index_attributes` for all entries returned by the query.
-* `results_attr` - A map of the LDAP results keyed by the attribute name identified by `key_attribute/<attribute name>`.
+* `results` - A list of the values of the `index_attribute` for all entries returned by the query. For example if the `index_attribute` was the LDAP `mail` attribute then all the email addresses returned as a result of the LDAP query will be exported via this resource attribute.
+* `results_attr` - A map of the LDAP results keyed by the attribute name identified by `<index_attribute_value>/<attribute name>`. If additional LDAP attributes were requested then their values may be retrieved by looking up this map using the value of the `index_attribute` (i.e. `<index_attribute_value>`) and the LDAP attribute name.
