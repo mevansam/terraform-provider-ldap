@@ -6,7 +6,7 @@ description: |-
   LDAP query data source.
 ---
 
-# ldqp\_query
+# ldap\_query
 
 Data source for querying LDAP for one or more objects.
 

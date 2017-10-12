@@ -31,8 +31,6 @@ provider "ldap" {
 
     bind_dn = "${var.ldap_bind_dn}"
     bind_password = "${var.ldap_bind_password}"
-
-    skip_ssl_validation = true
 }
 ```
 
