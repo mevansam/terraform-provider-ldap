@@ -33,7 +33,10 @@ func (c *client) connect() (conn *ldapapi.Conn, err error) {
 
 		conn, err = ldapapi.DialTLS("tcp",
 			fmt.Sprintf("%s:%d", c.host, c.port),
-			&tls.Config{InsecureSkipVerify: c.tlsSkipVerify})
+			&tls.Config{
+				InsecureSkipVerify: c.tlsSkipVerify,
+				ServerName:         c.host,
+			})
 
 	} else {
 		if c.port == -1 {
